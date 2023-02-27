@@ -45,6 +45,20 @@ from modules import modelloader
 from modules.shared import cmd_opts
 import modules.hypernetworks.hypernetwork
 
+import requests
+
+checkpoints = [
+    'https://huggingface.co/andite/anything-v4.0/resolve/main/anything-v4.0-pruned-fp16.safetensors',
+    'https://huggingface.co/AnonPerson/ChilloutMix/resolve/main/ChilloutMix-ni-fp16.safetensors',
+
+]
+for checkpoint in checkpoints:
+    # download models
+    with requests.get(checkpoint, stream=True) as r:
+        with open('models/Stable-diffusion/'+checkpoint.split('/')[-1], 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+
 
 if cmd_opts.server_name:
     server_name = cmd_opts.server_name

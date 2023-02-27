@@ -1,3 +1,5 @@
+# You can use Waifu2x in the output directory to upscale the images. If requires less than 4GB of VRAM.
+
 # Stable Diffusion web UI
 A browser interface based on Gradio library for Stable Diffusion.
 
